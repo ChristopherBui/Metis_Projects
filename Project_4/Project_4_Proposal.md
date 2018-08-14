@@ -46,6 +46,7 @@ Given the wide scope and depth of such a project, scope reduction, possibly thro
 Sample JSON snippet of entire dataset showing 1 Wikipedia page. 
 
 ```json
+'''
 data = {
     wiki_page_0:{
         title: 'Beyonce',
@@ -63,6 +64,7 @@ data = {
         }
     }
 }
+'''
 ```
 
 
