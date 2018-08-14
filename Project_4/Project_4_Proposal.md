@@ -26,6 +26,14 @@ Regarding the "comphrehension" aspect of this project, utilization of a *recurre
 
 ------
 
+**Updated:**
+
+Given the wide scope of the original goal of question answering, an intermediate goal instead will be the current focus of this project. The new goal is to input a series of questions into a model such that it will return a group of wikipedia articles that are releveant enough where their content is able to answer the given question. Note that no specific answer is provided, but only a group of relevant articles is returned. 
+
+
+
+*Initial Version*
+
 The current goal is to create a model simple enough where given a subset of wikipedia pages and a subset of questions taylored for those pages, the model will be able to process / "understand" the text of the wikipedia pages' content along with the text of the questions, and return a reasonable answer. Performance of the model will be judged against a test set based on the F1 score metric. The model's y_pred will be matched with that of the y_true and scored based on how closely the text matches.
 
 Given the wide scope and depth of such a project, scope reduction, possibly through limiting the dataset to only wikipedia pages about basketball for example, is also an option to consider.
