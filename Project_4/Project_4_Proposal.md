@@ -54,11 +54,10 @@ data = {
                 question:{
                     1: 'When did Beyonce start becoming popular?',
                     2: 'What areas did Beyonce c…hen she was growing up?'
-                    }
+                    },
                 answers:{
                 1: 'answer 1',
                 2: 'answer 2'
-            }
                 }
             }
         }
