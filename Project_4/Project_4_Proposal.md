@@ -2,7 +2,7 @@
 
 **Topic**
 
-Answering Questions Based On Given Text Data
+Returning A Group Of Relevant Articles That Most Likely Has Answers To A Given Question
 
 
 
