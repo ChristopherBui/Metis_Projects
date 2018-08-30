@@ -2,7 +2,7 @@
 
 ### Background
 
-Biologists currently rely on either the naked eye to observe effects of a drug on a sample of cells, or utilizing basic and highly sample-specific code to do so. In hopes of implementing a data science model that can be applied generally to a wide array of nuclei samples, the time of observing and understanding of a drug's effectivness on a sample of cells can be significantly reduced. By saving time in the detection process, cost of labor will decrease and efforts can be focused more on diagnosis.
+Biologists currently rely on either the naked eye to observe effects of a drug on a sample of cells, or utilizing basic and highly sample-specific code to do so. In hopes of implementing a data science model that can be applied generally to a wide array of nuclei samples, the time of observing and understanding a drug's effectivness on a sample of cells can be significantly reduced. By saving time in the detection process, cost of labor will decrease and efforts can be focused more on diagnosis.
 
 ------
 
@@ -14,7 +14,7 @@ Identification / segmentation of cells' nuclei from microscope images
 
 ### Domain
 
-Given the topic of this project, the realm of work will most likely be in *image segmentation*. As a result, utilization of *Convolutional Neural Networks* is optimal. To build the networks, TensorFlow, Keras, and Numpy will be used. The most favorable networks to try are **U-Net** and **One-Hundred Layers Tiramisu**. To handle numerical data formatting, Pandas is appropriate. Currently, the metric of choice to judge the model is accuracy. We want to ensure that the model will segment out the right sections of an image within an range of error.
+Given the topic of this project, the realm of work will most likely be in *image segmentation*. As a result, utilization of *Convolutional Neural Networks* is optimal. To build the networks, TensorFlow, Keras, and Numpy will be used. The most favorable networks to try are **U-Net** and **One-Hundred Layers Tiramisu**. To handle numerical data formatting, Pandas is appropriate. Currently, the metric of choice to judge the model is **[Intersection Over Union](https://www.kaggle.com/stkbailey/step-by-step-explanation-of-scoring-metric)**. We want to ensure that the model will segment out the right sections of an image within an range of error. The official description of the metric and pixel labeling of nuclei can be found [here](https://www.kaggle.com/c/data-science-bowl-2018#evaluation).
 
 ------
 
