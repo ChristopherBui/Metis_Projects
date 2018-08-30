@@ -28,12 +28,6 @@ Included in the training data for each image, there are *masks*. Masks are just 
 
 Lastly, there is a .csv file with columns: {**Image ID**, **Encoded Pixels**}. Image ID refers to each unique image file. Each observation in *Encoded Pixels* appears to be a list of integers; Presumeably, the integers seem to represent the boundary, interpreted as pixel locations, of each nucleus in an image.
 
-![ff3407842ada5bc18be79ae453e5bdaa1b68afc842fc22fa618ac6e6599d0bb3 copy](/Users/christopher/Desktop/projects/Metis_Projects/Project_5/Project_5_Proposal/img/ff3407842ada5bc18be79ae453e5bdaa1b68afc842fc22fa618ac6e6599d0bb3 copy.png)
-
-![e7188c37d87ef9e3f6bf3a226fede0f1cf753c472ab4182330d18a20b34cae07](/Users/christopher/Desktop/projects/Metis_Projects/Project_5/Project_5_Proposal/img/e7188c37d87ef9e3f6bf3a226fede0f1cf753c472ab4182330d18a20b34cae07.png)
-
-![Screen Shot 2018-08-30 at 11.55.57 AM](/Users/christopher/Desktop/projects/Metis_Projects/Project_5/Project_5_Proposal/img/Screen Shot 2018-08-30 at 11.55.57 AM.png)
-
 ------
 
 ### Known Unknowns
