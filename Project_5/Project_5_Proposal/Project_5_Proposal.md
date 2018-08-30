@@ -1,7 +1,5 @@
 # Project 5 Proposal
 
-------
-
 ### Background
 
 Biologists currently rely on either the naked eye to observe effects of a drug on a sample of cells, or utilizing basic and highly sample-specific code to do so. In hopes of implementing a data science model that can be applied generally to a wide array of nuclei samples, the time of observing and understanding of a drug's effectivness on a sample of cells can be significantly reduced. By saving time in the detection process, cost of labor will decrease and efforts can be focused more on diagnosis.
