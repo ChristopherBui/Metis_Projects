@@ -29,8 +29,8 @@ import tensorflow as tf
 # ignore warning messages
 warnings.filterwarnings('ignore')
 
-X_train = pickle.load(open('X_train.pickle','rb'))
-y_train = pickle.load(open('y_train.pickle','rb'))
+X_train = pickle.load(open('X_train_gray.pickle','rb'))
+y_train = pickle.load(open('y_train_gray.pickle','rb'))
 # X_test = pickle.load(open('X_test.pickle','rb'))
 
 def mean_iou(y_true, y_pred):
@@ -48,7 +48,7 @@ def mean_iou(y_true, y_pred):
 def fit_model(x_train, y_train):
     with tf.device('/gpu:0'):
 
-        inputs = Input((128,128,3))
+        inputs = Input((670,128,128))
 
         # scale rgb values from 0 to 1
         s = Lambda(lambda x: x/255)(inputs)
@@ -108,7 +108,7 @@ def fit_model(x_train, y_train):
         # model.summary()
 
         #stop_run = EarlyStopping(patience=3, verbose=1)
-        checkpoint_model = ModelCheckpoint('my_unet.h5', verbose=1, save_best_only=True)
+        checkpoint_model = ModelCheckpoint('my_unet_gray.h5', verbose=1, save_best_only=True)
 
         results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=10, callbacks=[checkpoint_model])
 
