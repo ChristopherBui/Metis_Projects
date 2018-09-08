@@ -5,6 +5,7 @@ import warnings
 
 import numpy as np
 import pandas as pd
+import cv2
 import pickle
 
 import matplotlib.pyplot as plt
@@ -96,7 +97,7 @@ def get_data():
     with open('y_train.pickle','wb') as f:
         pickle.dump(y_train, f)
 
-    with open('X_test', 'wb') as f:
+    with open('X_test.pickle', 'wb') as f:
         pickle.dump(X_test, f)
 
     return X_train, y_train, X_test

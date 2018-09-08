@@ -35,11 +35,6 @@ from model import *
 
 def main():
 
-    # stops running if no improvements occur over several epochs
-    # saves model after every epoch
-    stop_run = EarlyStopping(patience=3, verbose=1)
-    checkpoint_model = ModelCheckpoint('trained_model.h5', verbose=1, save_best_only=True)
-
     # get the data
     X_train, y_train, X_test = get_data()
 

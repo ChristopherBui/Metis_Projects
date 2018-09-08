@@ -105,7 +105,7 @@ def fit_model(x_train, y_train):
     stop_run = EarlyStopping(patience=3, verbose=1)
     checkpoint_model = ModelCheckpoint('my_unet.h5', verbose=1, save_best_only=True)
 
-    results = model.fit(x_train, y_train, validation_split=0.1, batch_size=32, epochs=5, callbacks=[stop_run, checkpoint_model])
+    results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=10, callbacks=[stop_run, checkpoint_model])
 
     model.save('my_unet.h5')
     return results
