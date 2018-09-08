@@ -47,10 +47,10 @@ train_ids = os.listdir(TRAIN_PATH)
 test_ids = os.listdir(TEST_PATH)
 
 # set the dimensions of X_train list
-X_train = np.zeros((len(train_ids), IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS), dtype=np.uint8)
+X_train = np.zeros((len(train_ids), IMG_HEIGHT, IMG_WIDTH), dtype=np.uint8)
 y_train = np.zeros((len(train_ids), IMG_HEIGHT, IMG_WIDTH, 1), dtype=np.bool)
 
-def get_data():
+def get_data2():
 
     # get training data
     for n, train_id in enumerate(train_ids):
@@ -59,8 +59,7 @@ def get_data():
         img_path = os.path.join(root_path + '/images/')
         mask_path = os.path.join(root_path + '/masks/')
 
-
-        img = cv2.imread(img_path + train_id + '.png', cv2.IMREAD_GRAYSCALE)[:,:,:1]
+        img = cv2.imread(os.path.join(img_path + train_id + '.png'), cv2.IMREAD_GRAYSCALE)
         img = resize(img, (IMG_HEIGHT, IMG_WIDTH), preserve_range=True, mode='constant')
         #img = np.expand_dims(img, axis=0)
 
@@ -78,27 +77,30 @@ def get_data():
         y_train[n] = mask_placeholder
 
     # get testing data
-    X_test = np.zeros((len(test_ids), IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS), dtype=np.uint8)
+    X_test = np.zeros((len(test_ids), IMG_HEIGHT, IMG_WIDTH), dtype=np.uint8)
 
     for n, test_id in enumerate(test_ids):
         root_path = os.path.join(TEST_PATH + test_id)
 
         img_path = os.path.join(root_path + '/images/')
 
-        img = cv2.imread(img_path + test_id + '.png', cv2.IMREAD_GRAYSCALE)[:,:,:IMG_CHANNELS]
+        img = cv2.imread(img_path + test_id + '.png', cv2.IMREAD_GRAYSCALE)
         img = resize(img, (IMG_HEIGHT, IMG_WIDTH), preserve_range=True, mode='constant')
 
         X_test[n] = img
 
 
     # pickle the data
-    with open('X_train2.pickle','wb') as f:
+    with open('X_train_gray.pickle','wb') as f:
         pickle.dump(X_train, f)
 
-    with open('y_train2.pickle','wb') as f:
+    with open('y_train_gray.pickle','wb') as f:
         pickle.dump(y_train, f)
 
-    with open('X_test2.pickle', 'wb') as f:
+    with open('X_test_gray.pickle', 'wb') as f:
         pickle.dump(X_test, f)
 
     return X_train, y_train, X_test
+
+if __name__ == '__main__':
+    get_data2()

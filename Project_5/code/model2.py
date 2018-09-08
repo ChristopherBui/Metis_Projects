@@ -58,9 +58,9 @@ def fit_model(x_train, y_train):
         conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop1)
         pool1 = MaxPooling2D(pool_size=(2,2))(conv1)
 
-        conv2 = Conv2D(128, (3,3), activation = 'elu', kernel_initializer='he_normal', padding='same')(pool1)
+        conv2 = Conv2D(128, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(pool1)
         drop2 = Dropout(0.1)(conv2)
-        conv2 = Conv2D(128, (3,3), activation = 'elu', kernel_initializer='he_normal', padding='same')(drop2)
+        conv2 = Conv2D(128, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop2)
         pool2 = MaxPooling2D(pool_size=(2,2))(conv2)
 
         conv3 = Conv2D(256,(3,3), activation='elu', kernel_initializer='he_normal', padding='same')(pool2)
