@@ -53,7 +53,7 @@ def fit_model(x_train, y_train):
         # scale rgb values from 0 to 1
         s = Lambda(lambda x: x/255)(inputs)
 
-        conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(s)
+        conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same', input_shape=(128,128))(s)
         drop1 = Dropout(0.1)(conv1)
         conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop1)
         pool1 = MaxPooling2D(pool_size=(2,2))(conv1)
@@ -78,25 +78,25 @@ def fit_model(x_train, y_train):
         conv5 = Conv2D(1024, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop5)
 
         up6 = Conv2DTranspose(512, (2,2), strides=(2,2), padding='same')(conv5)
-        up6 = concatenate([up6, conv4])
+        up6 = concatenate([up6, conv4], axis=1)
         conv6 = Conv2D(512, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(up6)
         drop6 = Dropout(0.1)(conv6)
         conv6 = Conv2D(512, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop6)
 
         up7 = Conv2DTranspose(256, (2,2), strides=(2,2), padding='same')(conv6)
-        up7 = concatenate([up7, conv3])
+        up7 = concatenate([up7, conv3], axis=1)
         conv7 = Conv2D(256, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(up7)
         drop7 = Dropout(0.1)(conv7)
         conv7 = Conv2D(256, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop7)
 
         up8 = Conv2DTranspose(128, (2,2), strides=(2,2), padding='same')(conv7)
-        up8 = concatenate([up8, conv2])
+        up8 = concatenate([up8, conv2], axis=1)
         conv8 = Conv2D(128, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(up8)
         drop8 = Dropout(0.1)(conv8)
         conv8 = Conv2D(128, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop8)
 
         up9 = Conv2DTranspose(64, (2,2), strides=(2,2), padding='same')(conv8)
-        up9 = concatenate([up9, conv1])
+        up9 = concatenate([up9, conv1], axis=1)
         conv9 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(up9)
         drop9 = Dropout(0.1)(conv9)
         conv9 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop9)
