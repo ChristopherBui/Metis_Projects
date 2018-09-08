@@ -50,7 +50,10 @@ def fit_model(x_train, y_train):
 
         inputs = Input((128,128,3))
 
-        conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(inputs)
+        # scale rgb values from 0 to 1
+        s = Lambda(lambda x: x/255)(inputs)
+
+        conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(s)
         drop1 = Dropout(0.1)(conv1)
         conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop1)
         pool1 = MaxPooling2D(pool_size=(2,2))(conv1)
@@ -104,10 +107,10 @@ def fit_model(x_train, y_train):
         model.compile(optimizer='adam', loss='binary_crossentropy', metrics=[mean_iou])
         # model.summary()
 
-        stop_run = EarlyStopping(patience=3, verbose=1)
+        #stop_run = EarlyStopping(patience=3, verbose=1)
         checkpoint_model = ModelCheckpoint('my_unet.h5', verbose=1, save_best_only=True)
 
-        results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=10, callbacks=[stop_run, checkpoint_model])
+        results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=10, callbacks=[checkpoint_model])
 
     return results
 
