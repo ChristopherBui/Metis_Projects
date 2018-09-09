@@ -75,31 +75,38 @@ def fit_model(x_train, y_train):
 
         model2 = Sequential()
         model2.add(Conv2DTranspose(512, (2,2), strides=(2,2), padding='same'))
-        merged = concatenate([model, model2], axis=1)
-        merged.add(Conv2D(512, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
-        merged.add(Dropout(0.1))
-        merged.add(Conv2D(512, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
+
+        merged1 = concatenate([model, model2], axis=1)
 
         model3 = Sequential()
+        model3.add(Conv2D(512, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
+        model3.add(Dropout(0.1))
+        model3.add(Conv2D(512, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
         model3.add(Conv2DTranspose(256, (2,2), strides=(2,2), padding='same'))
-        merged2 = concatenate([merged, model3], axis=1)
-        merged2.add(Conv2D(256, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
-        merged2.add(Dropout(0.1))
-        merged2.add(Conv2D(256, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
+
+        merged2 = concatenate([merged1, model3], axis=1)
 
         model4 = Sequential()
+        model4.add(Conv2D(256, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
+        model4.add(Dropout(0.1))
+        model4.add(Conv2D(256, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
         model4.add(Conv2DTranspose(128, (2,2), strides=(2,2), padding='same'))
+
         merged3 = concatenate([merged2, model4], axis=1)
-        merged3.add(Conv2D(128, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
-        merged3.add(Dropout(0.1))
-        merged3.add(Conv2D(128, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
 
         model5 = Sequential()
+        model5.add(Conv2D(128, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
+        model5.add(Dropout(0.1))
+        model5.add(Conv2D(128, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
         model5.add(Conv2DTranspose(64, (2,2), strides=(2,2), padding='same'))
-        result = concatenate([merged3, model5])
-        result.add(Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
-        result.add(Conv2D(1, (1,1), activation='sigmoid'))
 
+        merge4 = concatenate([merged3, model5])
+
+        model6 = Sequential()
+        model6.add(Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same'))
+        model6.add(Conv2D(1, (1,1), activation='sigmoid'))
+
+        result = concatenate([merge4, model6])
         result.compile(optimizer='adam', loss='binary_crossentropy', metrics=[mean_iou])
 
         checkpoint_model = ModelCheckpoint('my_unet_gray.h5', verbose=1, save_best_only=True)
