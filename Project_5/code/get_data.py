@@ -30,11 +30,6 @@ import tensorflow as tf
 # ignore warning messages
 warnings.filterwarnings('ignore')
 
-# set random seed
-seed = 24
-random.seed = seed
-np.random.seed = seed
-
 # set the dimensions of the images
 IMG_WIDTH = 128
 IMG_HEIGHT = 128
@@ -51,6 +46,7 @@ X_train = np.zeros((len(train_ids), IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS), dtype=
 y_train = np.zeros((len(train_ids), IMG_HEIGHT, IMG_WIDTH, 1), dtype=np.bool)
 
 def get_data():
+
     # get training data
     for n, train_id in enumerate(train_ids):
         root_path = os.path.join(TRAIN_PATH + train_id)
@@ -58,8 +54,8 @@ def get_data():
         img_path = os.path.join(root_path + '/images/')
         mask_path = os.path.join(root_path + '/masks/')
 
-
         img = imread(img_path + train_id + '.png', as_gray=True)[:,:,:IMG_CHANNELS]
+
         img = resize(img, (IMG_HEIGHT, IMG_WIDTH), preserve_range=True, mode='constant').astype(np.uint8)
         #img = np.expand_dims(img, axis=0)
 
@@ -89,7 +85,6 @@ def get_data():
 
         X_test[n] = img
 
-
     # pickle the data
     with open('X_train.pickle','wb') as f:
         pickle.dump(X_train, f)
@@ -101,3 +96,7 @@ def get_data():
         pickle.dump(X_test, f)
 
     return X_train, y_train, X_test
+
+
+if __name__ == '__main__':
+    get_data()
