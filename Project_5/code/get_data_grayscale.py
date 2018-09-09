@@ -30,11 +30,6 @@ import tensorflow as tf
 # ignore warning messages
 warnings.filterwarnings('ignore')
 
-# set random seed
-seed = 24
-random.seed = seed
-np.random.seed = seed
-
 # set the dimensions of the images
 IMG_WIDTH = 128
 IMG_HEIGHT = 128
