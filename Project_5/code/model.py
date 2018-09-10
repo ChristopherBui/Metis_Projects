@@ -29,7 +29,7 @@ import tensorflow as tf
 # ignore warning messages
 warnings.filterwarnings('ignore')
 
-X_train = pickle.load(open('X_train.pickle','rb'))
+X_train = pickle.load(open('X_train.pickle','rb'))/255
 y_train = pickle.load(open('y_train.pickle','rb'))
 # X_test = pickle.load(open('X_test.pickle','rb'))
 
