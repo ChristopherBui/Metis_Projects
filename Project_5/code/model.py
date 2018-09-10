@@ -25,6 +25,7 @@ from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras import backend as K
 
 import tensorflow as tf
+from tensorflow import metrics
 
 # ignore warning messages
 warnings.filterwarnings('ignore')
@@ -47,7 +48,7 @@ def mean_iou(y_true, y_pred):
 
 def fit_model(x_train, y_train):
     with tf.device('/gpu:0'):
-        
+
         inputs = Input((128,128,3))
 
         conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(inputs)
