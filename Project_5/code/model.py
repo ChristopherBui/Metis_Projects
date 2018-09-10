@@ -34,7 +34,7 @@ X_train = pickle.load(open('X_train.pickle','rb'))/255
 y_train = pickle.load(open('y_train.pickle','rb'))
 # X_test = pickle.load(open('X_test.pickle','rb'))
 
-def mean_iou(y_true, y_pred):
+def mean_iou_(y_true, y_pred):
     prec = []
     for t in np.arange(0.5, 1.0, 0.05):
         y_pred_ = tf.to_int32(y_pred > t)
@@ -102,7 +102,7 @@ def fit_model(x_train, y_train):
         outputs = Conv2D(1, (1,1), activation='sigmoid')(conv9)
 
         model = Model(inputs=[inputs], outputs=[outputs])
-        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=[mean_iou])
+        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['mean_iou'])
         # model.summary()
 
         stop_run = EarlyStopping(patience=3, verbose=1)
@@ -110,7 +110,7 @@ def fit_model(x_train, y_train):
 
         results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=10, callbacks=[stop_run, checkpoint_model])
 
-        model.save('my_unet.h5')
+        model.save('my_unet2.h5')
 
     return results
 
