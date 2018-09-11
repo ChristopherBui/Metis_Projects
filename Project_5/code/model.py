@@ -30,8 +30,8 @@ from tensorflow import metrics
 # ignore warning messages
 warnings.filterwarnings('ignore')
 
-X_train = pickle.load(open('X_train.pickle','rb'))/255
-y_train = pickle.load(open('y_train.pickle','rb'))
+X_train = pickle.load(open('X_trains.pickle','rb'))
+y_train = pickle.load(open('y_trains.pickle','rb'))
 # X_test = pickle.load(open('X_test.pickle','rb'))
 
 def mean_iou(y_true, y_pred):
@@ -50,8 +50,9 @@ def fit_model(x_train, y_train):
     with tf.device('/gpu:0'):
 
         inputs = Input((128,128,3))
+        norm = Lambda(lambda x: x/255)(inputs)
 
-        conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(inputs)
+        conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(norm)
         drop1 = Dropout(0.1)(conv1)
         conv1 = Conv2D(64, (3,3), activation='elu', kernel_initializer='he_normal', padding='same')(drop1)
         pool1 = MaxPooling2D(pool_size=(2,2))(conv1)
@@ -110,7 +111,7 @@ def fit_model(x_train, y_train):
 
         results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=10, callbacks=[stop_run, checkpoint_model])
 
-        model.save('my_unet2.h5')
+        model.save('my_unet.h5')
 
     return results
 

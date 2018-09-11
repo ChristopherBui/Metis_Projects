@@ -38,8 +38,8 @@ def iou(img1, img2):
     intersection = np.sum(img1 * img2)
     union = np.sum(img1+img2) - intersection
 
-    if not union:
-        return 1
+    #if not union:
+        #return 1
 
     return intersection / union
 
@@ -106,7 +106,7 @@ def fit_model(x_train, y_train):
         stop_run = EarlyStopping(patience=3, verbose=1)
         checkpoint_model = ModelCheckpoint('my_unet4.h5', verbose=1, save_best_only=True)
 
-        results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=10, callbacks=[stop_run, checkpoint_model])
+        results = model.fit(x_train, y_train, validation_split=0.1, batch_size=16, epochs=50, callbacks=[stop_run, checkpoint_model])
 
         model.save('my_unet4.h5')
 
