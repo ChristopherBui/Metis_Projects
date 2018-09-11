@@ -34,7 +34,7 @@ X_train = pickle.load(open('X_train.pickle','rb'))/255
 y_train = pickle.load(open('y_train.pickle','rb'))
 # X_test = pickle.load(open('X_test.pickle','rb'))
 
-def mean_iou_(y_true, y_pred):
+def mean_iou(y_true, y_pred):
     prec = []
     for t in np.arange(0.5, 1.0, 0.05):
         y_pred_ = tf.to_int32(y_pred > t)
