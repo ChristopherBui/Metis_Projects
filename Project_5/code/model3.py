@@ -34,40 +34,14 @@ X_train = pickle.load(open('X_train.pickles','rb'))/255
 y_train = pickle.load(open('y_train.pickles','rb'))
 # X_test = pickle.load(open('X_test.pickle','rb'))
 
-def object_mean_iou(y_labeled_true, y_labeled_pred):
-    num_y_labeled_true = y_labeled_true.max()
-    num_y_labeled_pred = y_labeled_pred.max()
-    threshold_ious = []
-    for threshold in [0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95]:
-        true_positives = 0
-        false_negative = 0
-        pred_obj_preload = []
-        pred_obj_size = []
-        for predicted_object_id in range(1, num_y_labeled_pred + 1):
-            pred_obj = y_labeled_pred == predicted_object_id
-            pred_obj_preload.append(pred_obj)
-            pred_obj_size.append(np.count_nonzero(pred_obj))
-        # a true positive for given threshold is when a _single_ object in the prediction corresponds to a given true object
-        for true_object_id in range(1, num_y_labeled_true + 1):
-            true_obj = y_labeled_true == true_object_id
-            true_obj_size = np.count_nonzero(true_obj)
-            matches = 0
-            for predicted_object_id in range(1, num_y_labeled_pred + 1):
-                # calculate the iou for this object and the true object
-                this_pred_obj = pred_obj_preload[predicted_object_id-1]
-                this_pred_obj_size = pred_obj_size[predicted_object_id-1]
-                intersection = np.count_nonzero(true_obj & this_pred_obj)
-                union = true_obj_size + this_pred_obj_size - intersection
-                iou = intersection / union
-                if iou > threshold:
-                    matches += 1
-            if matches == 1:
-                true_positives += 1
-            if matches == 0:
-                false_negative += 1
-        false_positive = num_y_labeled_pred - true_positives
-        threshold_ious.append(true_positives / (true_positives + false_positive + false_negative))
-    return sum(threshold_ious) / len(threshold_ious)
+def iou(img1, img2):
+    intersection = np.sum(img1 * img2)
+    union = np.sum(img1+img2) - intersection
+
+    if not union:
+        return 1
+
+    return intersection / union
 
 
 def fit_model(x_train, y_train):
@@ -126,7 +100,7 @@ def fit_model(x_train, y_train):
         outputs = Conv2D(1, (1,1), activation='sigmoid')(conv9)
 
         model = Model(inputs=[inputs], outputs=[outputs])
-        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['object_mean_iou'])
+        model.compile(optimizer='adam', loss='binary_crossentropy', metrics=[iou])
         # model.summary()
 
         stop_run = EarlyStopping(patience=3, verbose=1)
