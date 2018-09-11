@@ -30,8 +30,8 @@ from tensorflow import metrics
 # ignore warning messages
 warnings.filterwarnings('ignore')
 
-X_train = pickle.load(open('X_train.pickles','rb'))/255
-y_train = pickle.load(open('y_train.pickles','rb'))
+X_train = pickle.load(open('X_trains.pickle','rb'))/255
+y_train = pickle.load(open('y_trains.pickle','rb'))
 # X_test = pickle.load(open('X_test.pickle','rb'))
 
 def iou(img1, img2):
