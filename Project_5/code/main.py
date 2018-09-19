@@ -45,7 +45,6 @@ def main():
     root = os.getcwd()
     path = root[:len(root)-len('code')]+'data/'
 
-
     X_train = pickle.load(open(path + 'X_train.pickle','rb'))
     y_train = pickle.load(open(path + 'y_train.pickle','rb'))
     X_validation = pickle.load(open(path + 'X_validaiton.pickle','rb'))
