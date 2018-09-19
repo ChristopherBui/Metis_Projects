@@ -5,15 +5,13 @@ import warnings
 
 import numpy as np
 import pandas as pd
+import cv2
 import pickle
 
 import matplotlib.pyplot as plt
 
-from tqdm import tqdm
-from itertools import chain
 from skimage.io import imread, imshow, imread_collection, concatenate_images
 from skimage.transform import resize
-from skimage.morphology import label
 
 from keras.models import Model, load_model
 from keras.layers import Input
@@ -25,13 +23,13 @@ from keras.callbacks import EarlyStopping, ModelCheckpoint
 from keras import backend as K
 
 import tensorflow as tf
-from tensorflow import metrics
+
 
 # ignore warning messages
 warnings.filterwarnings('ignore')
 
-X_train = pickle.load(open('X_trains.pickle','rb'))
-y_train = pickle.load(open('y_trains.pickle','rb'))
+X_train = pickle.load(open('X_train.pickle','rb'))
+y_train = pickle.load(open('y_train.pickle','rb'))
 # X_test = pickle.load(open('X_test.pickle','rb'))
 
 def mean_iou(y_true, y_pred):
