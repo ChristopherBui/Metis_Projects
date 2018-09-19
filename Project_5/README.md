@@ -1,4 +1,4 @@
-# Project 5 Proposal
+# Project 5: Nucleus Image Segmentation
 
 ### Background
 
