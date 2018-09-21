@@ -1,4 +1,4 @@
-# Project 1 Summary: 
+# Project 2 Summary: 
 
 ## Predicting NBA Player Performance 
 
