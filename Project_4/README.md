@@ -1,6 +1,6 @@
 # Project 4 Summary:
 
-# Returning Text Data Relevant To An Asked Question
+## Returning Text Data Relevant To An Asked Question
 
 The field of Natural Language Processing (NLP) is an emerging and fast growing one. In essence, it is the extraction, processing, and manipulation of text data in order to predict an output of text or to see similarities between groups of text. Practical applications of this concept can be applied to online customer service platforms, information request services, or even classification of clients based on their profiles. For this project, its aim is to provide the most relevant Wikipedia articles based on an input question. When researching a topic, people many times do not get the information they are interested in, and as a result, has to spend further unneccessary time researching. This project hopes to establish the foundation for a scalable product that can ultimately reduce this searching time within the realm of NLP. 
 
