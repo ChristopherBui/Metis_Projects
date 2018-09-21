@@ -1,4 +1,6 @@
-# Project 5 Summary: Cellular Nucleus Image Segementation
+# Project 5 Summary:
+
+## Cellular Nucleus Image Segementation
 
 A common goal in biology is to count to see whether the number of nuclei for a type of cell has increased or decreased, or to calculate their change in size in response a test drug. Traditional methods rely on identifying locations of these nuclei with the naked eye and either manually counting or marking their positions with certain software programs. The challange further grows when dealing with different types of cells. You may still have to rely on the naked eye, but now you have to adjust the software settings accordingly for each different type of cell so that the computer can render a viewable image. This is quite a tedious and time consuming task. 
 
