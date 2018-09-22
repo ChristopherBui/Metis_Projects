@@ -11,7 +11,7 @@ The first step for this project was to determine what response variable could tr
 1. Acquire average stats for the first 3 years of a player’s career 
 2. Acquire 4th year points per game as our true value; 0 assigned if player was not active 
 
-In building the model, linear regression was used to predict a player’s performance. To test the validity of the model, k-fold cross validation was implemented between training set and test set. Performance of the model is measured by R^2 with normalized data in addition to the Mean Square Error. 
+In creating the model, linear regression was used to predict a player’s performance. To test the validity of the model, k-fold cross validation was implemented between training set and test set. Performance of the model is measured by R^2 with normalized data in addition to the Mean Square Error. 
 
 ## Tools 
 
